@@ -881,15 +881,12 @@ function physBone.physBoneRender(delta, context, curPhysBoneID)
 					local rot = part:getRot()
 
 					mat:translate(-pivot)
-						:rotate(rot.x,rot.y,rot.z)
+						:rotate(rot)
 						:translate(pivot)
-
 						:translate(-parentPivot)
 					if partID ~= "PB_Debug_Direction" and partID ~= "PB_Debug_NodeRadius" then
-						mat:rotate(vec(0,0,curPhysBone.rotMod.z))
-							:rotate(vec(0,curPhysBone.rotMod.y,0))
-							:rotate(vec(curPhysBone.rotMod.x,0,0))
-							:rotate(vec(0,curPhysBone.rollMod,0))
+						mat:rotate(curPhysBone.rotMod)
+							:rotateY(curPhysBone.rollMod)
 					end
 					mat:rotate(0,-90,0)
 						:rotate(pitch,0,yaw)
